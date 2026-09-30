@@ -2516,13 +2516,15 @@ footer a:hover{border-bottom-color:#E9C9A0;}
 
   .hero-photo-wrap{order:-1;aspect-ratio:1/1;max-width:380px;margin:0 auto;}
 
+  .hero{padding-bottom:36px;}
+
 
 
   .grid-2{grid-template-columns:1fr;}
 
 
 
-  .side-photo{height:auto;min-height:0;aspect-ratio:4/3;max-width:420px;margin:0 auto;}
+  .side-photo{height:auto;min-height:0;aspect-ratio:4/3;max-width:420px;margin:6px auto 0;}
 
 
 
@@ -2799,6 +2801,22 @@ footer a:hover{border-bottom-color:#E9C9A0;}
 .reveal-init{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1);}
 
 .reveal-init.is-visible{opacity:1;transform:translateY(0);}
+
+.reveal-check{opacity:0;transform:translateX(-18px);transition:opacity .5s ease, transform .5s ease;}
+
+.reveal-check.is-visible{opacity:1;transform:translateX(0);}
+
+.reveal-check.is-visible .check-ico{animation:checkPop .45s ease .1s backwards;}
+
+@keyframes checkPop{
+
+  0%{transform:scale(0.4);}
+
+  60%{transform:scale(1.15);}
+
+  100%{transform:scale(1);}
+
+}
 
 .unique-card, .no-work-card, .price-card, .review-card, .step{
 
@@ -3361,12 +3379,19 @@ footer a:hover{border-bottom-color:#E9C9A0;}
 
 <script>
 (function(){
+  // Stop the browser from restoring a previously-scrolled position when
+  // the page is reopened/reloaded (this was the real cause of landing on
+  // the pricing block instead of the top on a fresh visit).
+  if('scrollRestoration' in history){ history.scrollRestoration = 'manual'; }
+  window.scrollTo(0,0);
+
   // Force-correct anchor-link scrolling so the target section lands
   // below the sticky header instead of being hidden behind it (some
   // browsers don't fully respect scroll-margin-top on the very first
   // jump). Runs on load and on every hash change (nav-menu click).
+  // With no hash at all, a fresh visit always starts at the very top.
   function scrollToHash(){
-    if(!location.hash) return;
+    if(!location.hash){ window.scrollTo(0,0); return; }
     var el = document.querySelector(location.hash);
     if(!el) return;
     var headerH = (document.querySelector('.site-header') || {}).offsetHeight || 70;
@@ -3381,10 +3406,14 @@ footer a:hover{border-bottom-color:#E9C9A0;}
   );
   targets.forEach(function(el){ el.classList.add('reveal-init'); });
 
-  var groups = document.querySelectorAll('.unique-cards, .no-work-grid, .pricing-grid, .steps, .reviews-grid');
+  var checkItems = document.querySelectorAll('.check-list li');
+  checkItems.forEach(function(el){ el.classList.add('reveal-check'); });
+  targets = Array.prototype.concat.call(Array.prototype.slice.call(targets), Array.prototype.slice.call(checkItems));
+
+  var groups = document.querySelectorAll('.unique-cards, .no-work-grid, .pricing-grid, .steps, .reviews-grid, .check-list');
   groups.forEach(function(group){
     Array.prototype.forEach.call(group.children, function(child, i){
-      child.style.transitionDelay = Math.min(i, 4) * 90 + 'ms';
+      child.style.transitionDelay = Math.min(i, 6) * 80 + 'ms';
     });
   });
 
