@@ -402,11 +402,11 @@ a{color:inherit;text-decoration:none;}
 
 
 
-•
 
 
 
-•
+
+
 
 
 
@@ -638,7 +638,7 @@ a{color:inherit;text-decoration:none;}
 
 
 
-•
+
 
 
 
@@ -874,7 +874,7 @@ a{color:inherit;text-decoration:none;}
 
 
 
-•
+
 
 
 
@@ -902,7 +902,7 @@ a{color:inherit;text-decoration:none;}
 
 
 
-  align-items:center;
+  align-items:stretch;
 
 
 
@@ -1002,23 +1002,23 @@ a{color:inherit;text-decoration:none;}
 
 
 
+  height:100%;
+
+
+
+  min-height:360px;
+
+
+
 }
 
 
 
-.side-photo img{width:100%;object-fit:cover;}
+.side-photo img{width:100%;height:100%;object-fit:cover;}
 
 
 
-.for-you-flip .side-photo{max-height:420px;}
 
-
-
-.for-you-flip .side-photo img{height:100%;}
-
-
-
-•
 
 
 
@@ -1226,7 +1226,7 @@ a{color:inherit;text-decoration:none;}
 
 
 
-•
+
 
 
 
@@ -1266,7 +1266,7 @@ a{color:inherit;text-decoration:none;}
 
 
 
-•
+
 
 
 
@@ -1454,7 +1454,7 @@ a{color:inherit;text-decoration:none;}
 
 
 
-•
+
 
 
 
@@ -1702,7 +1702,7 @@ a{color:inherit;text-decoration:none;}
 
 
 
-•
+
 
 
 
@@ -1715,6 +1715,8 @@ a{color:inherit;text-decoration:none;}
 
 
 .unique-cards{display:grid;gap:14px;margin-top:24px;}
+
+.program-cards{grid-template-columns:1fr 1fr;gap:16px;}
 
 
 
@@ -1750,7 +1752,7 @@ a{color:inherit;text-decoration:none;}
 
 
 
-•
+
 
 
 
@@ -1822,7 +1824,7 @@ a{color:inherit;text-decoration:none;}
 
 
 
-•
+
 
 
 
@@ -1954,7 +1956,7 @@ a{color:inherit;text-decoration:none;}
 
 
 
-•
+
 
 
 
@@ -2204,7 +2206,7 @@ a{color:inherit;text-decoration:none;}
 
 
 
-•
+
 
 
 
@@ -2344,7 +2346,7 @@ details p{
 
 
 
-•
+
 
 
 
@@ -2384,7 +2386,7 @@ details p{
 
 
 
-•
+
 
 
 
@@ -2456,7 +2458,7 @@ footer a:hover{border-bottom-color:#E9C9A0;}
 
 
 
-•
+
 
 
 
@@ -2476,11 +2478,23 @@ footer a:hover{border-bottom-color:#E9C9A0;}
 
 
 
+  .side-photo{height:auto;min-height:0;aspect-ratio:4/3;max-width:420px;margin:0 auto;}
+
+
+
+  .side-photo img{height:100%;}
+
+
+
   .grid-2.reverse .side-photo{order:-1;max-width:380px;margin:0 auto;}
 
 
 
   .no-work-grid{grid-template-columns:1fr;}
+
+
+
+  .program-cards{grid-template-columns:1fr;}
 
 
 
@@ -2736,7 +2750,7 @@ footer a:hover{border-bottom-color:#E9C9A0;}
 
 
 
-•
+
 
 
 
@@ -2765,6 +2779,7 @@ footer a:hover{border-bottom-color:#E9C9A0;}
         <div class="hero-meta">
           <span class="pill pill-date">📅 Старт — 12 октября</span>
           <span class="pill">🗓 14 дней практики</span>
+          <span class="pill">💛 Раннее бронирование до 7 октября</span>
         </div>
         <a href="#pricing" class="btn btn-lg btn-pulse">Пройти марафон</a>
       </div>
@@ -2832,7 +2847,7 @@ footer a:hover{border-bottom-color:#E9C9A0;}
   <div class="container">
     <h2 class="h2">Что будет на марафоне</h2>
     <p class="lead">14 дней ежедневной работы с печенью и желчным пузырём.</p>
-    <div class="unique-cards" style="margin-top:24px;">
+    <div class="unique-cards program-cards">
       <div class="unique-card">
         <h3>🌿 Ежедневные практики</h3>
         <p>Практики для работы с печенью и желчным пузырём каждый день марафона.</p>
@@ -2842,8 +2857,8 @@ footer a:hover{border-bottom-color:#E9C9A0;}
         <p>Расскажу много интересного об этих органах и о том, как с ними взаимодействовать.</p>
       </div>
       <div class="unique-card">
-        <h3>💛 Практики на каждый день</h3>
-        <p>Дополнительные практики, которые помогают поддерживать печень и желчный пузырь в повседневной жизни.</p>
+        <h3>🏡 Для повседневной жизни</h3>
+        <p>Дополнительные практики, которые помогают поддерживать печень и желчный пузырь в быту.</p>
       </div>
       <div class="unique-card">
         <h3>💬 Сопровождение</h3>
@@ -2975,10 +2990,24 @@ footer a:hover{border-bottom-color:#E9C9A0;}
 
 
 
-•
 
 
 
+
+
+<!-- ORGANIZATION -->
+<section class="organization section">
+  <div class="container">
+    <h2 class="h2">Как будет проходить марафон?</h2>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><p>Вы оплачиваете участие.</p></div>
+      <div class="step"><div class="step-num">2</div><p>После оплаты придёт ссылка на канал с марафоном (в Telegram или MAX, на выбор).</p></div>
+      <div class="step"><div class="step-num">3</div><p>Каждый день получаете практику для печени и желчного пузыря.</p></div>
+      <div class="step"><div class="step-num">4</div><p>В чате делимся результатами, и я отвечаю на вопросы.</p></div>
+      <div class="step"><div class="step-num">5</div><p>Практикуете в удобное время в течение всех 14 дней марафона.</p></div>
+    </div>
+  </div>
+</section>
 
 <!-- PRICING -->
 <section class="pricing section" id="pricing">
@@ -3186,7 +3215,7 @@ footer a:hover{border-bottom-color:#E9C9A0;}
 
 
 
-•
+
 
 
 
@@ -3268,7 +3297,7 @@ footer a:hover{border-bottom-color:#E9C9A0;}
 
 
 
-•
+
 
 
 
@@ -3280,7 +3309,7 @@ footer a:hover{border-bottom-color:#E9C9A0;}
 
 
 
-•
+
 
 
 
