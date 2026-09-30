@@ -2944,7 +2944,7 @@ footer a:hover{border-bottom-color:#E9C9A0;}
         <p>Ежедневные практики для работы с печенью и желчным пузырём.</p>
       </div>
       <div class="unique-card">
-        <h3>📖 Теория, которая объясняет</h3>
+        <h3>📖 Теория</h3>
         <p>Расскажу много интересного об этих органах и о том, как с ними взаимодействовать.</p>
       </div>
       <div class="unique-card">
@@ -3361,6 +3361,21 @@ footer a:hover{border-bottom-color:#E9C9A0;}
 
 <script>
 (function(){
+  // Force-correct anchor-link scrolling so the target section lands
+  // below the sticky header instead of being hidden behind it (some
+  // browsers don't fully respect scroll-margin-top on the very first
+  // jump). Runs on load and on every hash change (nav-menu click).
+  function scrollToHash(){
+    if(!location.hash) return;
+    var el = document.querySelector(location.hash);
+    if(!el) return;
+    var headerH = (document.querySelector('.site-header') || {}).offsetHeight || 70;
+    var top = el.getBoundingClientRect().top + window.pageYOffset - headerH - 12;
+    window.scrollTo({top: top, behavior: 'auto'});
+  }
+  window.addEventListener('load', function(){ setTimeout(scrollToHash, 0); });
+  window.addEventListener('hashchange', scrollToHash);
+
   var targets = document.querySelectorAll(
     '.unique-card, .price-card, .no-work-card, .step, .review-card, .timeline-item, .mentor-quote, .why-box'
   );
