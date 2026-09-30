@@ -2632,6 +2632,16 @@ footer a:hover{border-bottom-color:#E9C9A0;}
 
 @media (max-width:900px){.hero-photo-wrap{animation:none;}}
 
+@keyframes checkGlow{
+  0%,100%{box-shadow:0 0 0 0 rgba(74,50,35,0.32);}
+  50%{box-shadow:0 0 0 7px rgba(74,50,35,0);}
+}
+.check-list li:nth-child(2) .check-ico{animation-delay:.1s,.9s;}
+.check-list li:nth-child(3) .check-ico{animation-delay:.1s,1.2s;}
+.check-list li:nth-child(4) .check-ico{animation-delay:.1s,1.5s;}
+.check-list li:nth-child(5) .check-ico{animation-delay:.1s,1.8s;}
+.check-list li:nth-child(6) .check-ico{animation-delay:.1s,2.1s;}
+.check-list li:nth-child(7) .check-ico{animation-delay:.1s,2.4s;}
 @keyframes dateBounce{
 
 
@@ -2806,7 +2816,7 @@ footer a:hover{border-bottom-color:#E9C9A0;}
 
 .reveal-check.is-visible{opacity:1;transform:translateX(0);}
 
-.reveal-check.is-visible .check-ico{animation:checkPop .45s ease .1s backwards;}
+.reveal-check.is-visible .check-ico{animation:checkPop .45s ease .1s backwards, checkGlow 2.6s ease-in-out .6s infinite;}
 
 @keyframes checkPop{
 
