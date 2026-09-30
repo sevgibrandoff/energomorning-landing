@@ -3383,26 +3383,33 @@ footer a:hover{border-bottom-color:#E9C9A0;}
 
 <script>
 (function(){
-  // Stop the browser from restoring a previously-scrolled position when
-  // the page is reopened/reloaded (this was the real cause of landing on
-  // the pricing block instead of the top on a fresh visit).
+  // A fresh page load/refresh must ALWAYS start at the very top, no
+  // matter what: not the browser's restored scroll position, and not
+  // any #hash baked into the URL (e.g. left over in the address bar
+  // after clicking a "Забронировать" button earlier). Only an explicit
+  // in-page click on a nav link (hashchange, after the page already
+  // loaded) should scroll down.
   if('scrollRestoration' in history){ history.scrollRestoration = 'manual'; }
-  window.scrollTo(0,0);
+  function forceTop(){
+    window.scrollTo(0,0);
+    if(location.hash && history.replaceState){
+      history.replaceState(null, '', location.pathname + location.search);
+    }
+  }
+  forceTop();
+  window.addEventListener('load', forceTop);
+  window.addEventListener('pageshow', forceTop);
 
-  // Force-correct anchor-link scrolling so the target section lands
-  // below the sticky header instead of being hidden behind it (some
-  // browsers don't fully respect scroll-margin-top on the very first
-  // jump). Runs on load and on every hash change (nav-menu click).
-  // With no hash at all, a fresh visit always starts at the very top.
+  // Anchor-link scrolling for in-page nav clicks, correcting for the
+  // sticky header so the target section lands below it, not under it.
   function scrollToHash(){
-    if(!location.hash){ window.scrollTo(0,0); return; }
+    if(!location.hash) return;
     var el = document.querySelector(location.hash);
     if(!el) return;
     var headerH = (document.querySelector('.site-header') || {}).offsetHeight || 70;
     var top = el.getBoundingClientRect().top + window.pageYOffset - headerH - 12;
     window.scrollTo({top: top, behavior: 'auto'});
   }
-  window.addEventListener('load', function(){ setTimeout(scrollToHash, 0); });
   window.addEventListener('hashchange', scrollToHash);
 
   var targets = document.querySelectorAll(
