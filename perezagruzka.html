@@ -2738,6 +2738,44 @@ footer a:hover{border-bottom-color:#E9C9A0;}
 
 
 
+/* SCROLL REVEAL + HOVER DYNAMICS */
+
+.reveal-init{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1);}
+
+.reveal-init.is-visible{opacity:1;transform:translateY(0);}
+
+.unique-card, .no-work-card, .price-card, .review-card, .step{
+
+  transition:transform .3s ease, box-shadow .3s ease;
+
+}
+
+.unique-card:hover, .no-work-card:hover{
+
+  transform:translateY(-6px);
+
+  box-shadow:0 18px 34px -18px rgba(59,42,31,0.35);
+
+}
+
+.price-card:hover{
+
+  transform:translateY(-4px);
+
+}
+
+.mentor-photo, .side-photo, .hero-photo-wrap{
+
+  transition:transform .5s ease;
+
+}
+
+.mentor-photo:hover, .side-photo:hover, .hero-photo-wrap:hover{
+
+  transform:scale(1.015);
+
+}
+
 </style>
 
 
@@ -2778,8 +2816,7 @@ footer a:hover{border-bottom-color:#E9C9A0;}
         <p class="hero-desc">Ежедневные практики для печени и желчного пузыря — органов, от которых напрямую зависят твоя энергия, раздражительность и способность принимать решения.</p>
         <div class="hero-meta">
           <span class="pill pill-date">📅 Старт — 12 октября</span>
-          <span class="pill">🗓 14 дней практики</span>
-          <span class="pill">💛 Раннее бронирование до 7 октября</span>
+          <span class="pill">🗓 14 дней практик <span style="font-size:0.8em;opacity:0.8;">· доступ на 1 месяц</span></span>
         </div>
         <a href="#pricing" class="btn btn-lg btn-pulse">Пройти марафон</a>
       </div>
@@ -2801,7 +2838,7 @@ footer a:hover{border-bottom-color:#E9C9A0;}
         <h2 class="h2">Тебе знакомо?</h2>
         <ul class="check-list">
           <li><span class="check-ico">✓</span> Просыпаешься уже уставшей, будто и не спала</li>
-          <li><span class="check-ico">✓</span> Раздражаешься на ровном месте, даже когда повода нет</li>
+          <li><span class="check-ico">✓</span> Раздражаешься на ровном месте, даже без повода</li>
           <li><span class="check-ico">✓</span> Тяжело принять решение, долго «зависаешь» между да и нет</li>
           <li><span class="check-ico">✓</span> Тяжесть или дискомфорт в правом боку, горечь во рту по утрам</li>
           <li><span class="check-ico">✓</span> Плохо спишь, особенно просыпаешься среди ночи в одно и то же время</li>
@@ -3296,6 +3333,36 @@ footer a:hover{border-bottom-color:#E9C9A0;}
 </div>
 
 
+
+<script>
+(function(){
+  var targets = document.querySelectorAll(
+    '.h2, .unique-card, .price-card, .no-work-card, .step, .review-card, .timeline-item, .mentor-quote, .why-box'
+  );
+  targets.forEach(function(el){ el.classList.add('reveal-init'); });
+
+  var groups = document.querySelectorAll('.unique-cards, .no-work-grid, .pricing-grid, .steps, .reviews-grid');
+  groups.forEach(function(group){
+    Array.prototype.forEach.call(group.children, function(child, i){
+      child.style.transitionDelay = Math.min(i, 4) * 90 + 'ms';
+    });
+  });
+
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.12, rootMargin:'0px 0px -60px 0px'});
+    targets.forEach(function(el){ io.observe(el); });
+  } else {
+    targets.forEach(function(el){ el.classList.add('is-visible'); });
+  }
+})();
+</script>
 
 
 
